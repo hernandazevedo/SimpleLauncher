@@ -18,4 +18,10 @@ public class SimpleLauncherActivity extends Activity {
         Intent i = new Intent(this, AppsListActivity.class);
         startActivity(i);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showApps(null);
+    }
 }

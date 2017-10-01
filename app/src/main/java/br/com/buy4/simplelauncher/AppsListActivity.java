@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AppsListActivity extends Activity {
@@ -49,6 +51,15 @@ public class AppsListActivity extends Activity {
             app.setIcon(ri.activityInfo.loadIcon(manager));
             apps.add(app);
         }
+
+        // Sorting
+        Collections.sort(apps, new Comparator<AppDetail>() {
+            @Override
+            public int compare(AppDetail app1, AppDetail app2)
+            {
+                return  app1.getLabel().toString().compareTo(app2.getLabel().toString());
+            }
+        });
     }
 
 
@@ -70,8 +81,8 @@ public class AppsListActivity extends Activity {
                 TextView appLabel = (TextView)convertView.findViewById(R.id.item_app_label);
                 appLabel.setText(apps.get(position).getLabel());
 
-                TextView appName = (TextView)convertView.findViewById(R.id.item_app_name);
-                appName.setText(apps.get(position).getName());
+//                TextView appName = (TextView)convertView.findViewById(R.id.item_app_name);
+//                appName.setText(apps.get(position).getName());
 
                 return convertView;
             }
